@@ -20,6 +20,7 @@ def count_calls(method: Callable) -> Callable:
         return method(self, *args, **kwargs)
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """Stores the history of inputs and outputs for a particular function"""
     method_key = method.__qualname__
@@ -33,6 +34,7 @@ def call_history(method: Callable) -> Callable:
         return result
     return wrapper
 
+
 def replay(method: Callable) -> None:
     """Displays the history of calls of a particular function"""
     method_key = method.__qualname__
@@ -44,6 +46,7 @@ def replay(method: Callable) -> None:
     for inp, outp in list(IOTuple):
         attr, data = inp.decode("utf-8"), outp.decode("utf-8")
         print(f'{method_key}(*{attr}) -> {data}')
+
 
 class Cache:
     """Cache class to handle redis operations."""
